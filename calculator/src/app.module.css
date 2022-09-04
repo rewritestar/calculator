@@ -1,0 +1,40 @@
+@value makerDarkGrey, makerDarkBlue, makerYellow from 'common/colors.css';
+
+.app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: makerDarkGrey;
+}
+
+.container {
+  width: 30em;
+  height: 40em;
+  background-color: makerDarkBlue;
+  border-radius: 10px;
+  padding: 1.5em;
+}
+
+.show {
+  background-color: makerYellow;
+  border: 3px solid white;
+  width: 100%;
+  height: 110px;
+  padding: 0.5em;
+  border-radius: 10px;
+  margin-bottom: 0.5em;
+  font-size: 30px;
+}
+.show:focus {
+  outline: none;
+}
+.buttons {
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
