@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./app.module.css";
-import NumberButton from "./component/number_button/number_button";
-import OperatorButton from "./component/operator_button/operator_button";
+import Button from "./component/button/button";
 
 function App() {
   const [input, setInput] = useState("");
@@ -17,37 +16,37 @@ function App() {
   return (
     <div className={styles.app}>
       <div className={styles.container}>
-        <input readOnly className={styles.show} type="text" value={input} />
+        <input className={styles.show} type="text" value={input} />
         <section className={styles.buttons}>
           <div className={styles.buttons_container}>
-            <OperatorButton name="C" onClick={onReset} />
-            <OperatorButton name="<=" />
-            <OperatorButton name="%" />
-            <OperatorButton name="/" />
+            <Button name="C" colorType="operator" onClick={onReset} />
+            <Button name="<=" colorType="operator" onClick={onReset} />
+            <Button name="%" colorType="operator" onClick={onReset} />
+            <Button name="/" colorType="operator" onClick={onReset} />
           </div>
           <div className={styles.buttons_container}>
-            <NumberButton name="7" onClick={onNumberClick} />
-            <NumberButton name="8" onClick={onNumberClick} />
-            <NumberButton name="9" onClick={onNumberClick} />
-            <OperatorButton name="x" />
+            <Button name="7" colorType="number" onClick={onNumberClick} />
+            <Button name="8" colorType="number" onClick={onNumberClick} />
+            <Button name="9" colorType="number" onClick={onNumberClick} />
+            <Button name="x" colorType="operator" onClick={onReset} />
           </div>
           <div className={styles.buttons_container}>
-            <NumberButton name="4" onClick={onNumberClick} />
-            <NumberButton name="5" onClick={onNumberClick} />
-            <NumberButton name="6" onClick={onNumberClick} />
-            <OperatorButton name="-" />
+            <Button name="4" colorType="number" onClick={onNumberClick} />
+            <Button name="5" colorType="number" onClick={onNumberClick} />
+            <Button name="6" colorType="number" onClick={onNumberClick} />
+            <Button name="-" colorType="operator" onClick={onReset} />
           </div>
           <div className={styles.buttons_container}>
-            <NumberButton name="1" onClick={onNumberClick} />
-            <NumberButton name="2" onClick={onNumberClick} />
-            <NumberButton name="3" onClick={onNumberClick} />
-            <OperatorButton name="+" />
+            <Button name="1" colorType="number" onClick={onNumberClick} />
+            <Button name="2" colorType="number" onClick={onNumberClick} />
+            <Button name="3" colorType="number" onClick={onNumberClick} />
+            <Button name="+" colorType="operator" onClick={onReset} />
           </div>
           <div className={styles.buttons_container}>
-            <OperatorButton name="(" />
-            <NumberButton name="0" onClick={onNumberClick} />
-            <OperatorButton name=")" />
-            <OperatorButton name="=" />
+            <Button name="(" colorType="operator" onClick={onReset} />
+            <Button name="0" colorType="number" onClick={onNumberClick} />
+            <Button name=")" colorType="operator" onClick={onReset} />
+            <Button name="=" colorType="operator" onClick={onReset} />
           </div>
         </section>
       </div>
