@@ -56,7 +56,7 @@ function App() {
           <div className={styles.buttons_container}>
             <Button name="C" colorType="operator" onClick={onResetClick} />
             <Button name="<=" colorType="operator" onClick={onDeleteClick} />
-            <Button name="%" colorType="operator" onClick={onOperatorClick} />
+            <Button name="ㅑ" colorType="operator" />
             <Button name="/" colorType="operator" onClick={onOperatorClick} />
           </div>
           <div className={styles.buttons_container}>
