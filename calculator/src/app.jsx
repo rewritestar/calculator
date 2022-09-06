@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./app.module.css";
 import Button from "./component/button/button";
-import Postfix from "./component/service/postfix";
+import InfixToPostfix from "./component/service/infixToPostfix";
 
 function App() {
   const [input, setInput] = useState("");
@@ -45,8 +45,8 @@ function App() {
     ) {
       alert("완성되지 않은 수식입니다.");
     }
-    const postfix = new Postfix(input);
-    postfix.calculation();
+    const infixToPostfix = new InfixToPostfix(input);
+    console.log(infixToPostfix.calculation());
   };
   return (
     <div className={styles.app}>

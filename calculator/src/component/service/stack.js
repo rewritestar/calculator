@@ -18,6 +18,9 @@ class Stack {
   peek() {
     return this.arr[this.length - 1];
   }
+  getLength() {
+    return this.length;
+  }
 }
 
 export default Stack;
