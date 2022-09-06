@@ -46,7 +46,6 @@ function App() {
       alert("완성되지 않은 수식입니다.");
     }
     const postfix = new Postfix(input);
-    postfix.stringToArr();
     postfix.calculation();
   };
   return (
