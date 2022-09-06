@@ -5,6 +5,7 @@ import Postfix from "./component/service/postfix";
 
 function App() {
   const [input, setInput] = useState("");
+
   const onNumberClick = (e) => {
     const number = e.target.innerText;
     const newInput = input + number;
@@ -45,6 +46,7 @@ function App() {
       alert("완성되지 않은 수식입니다.");
     }
     const postfix = new Postfix(input);
+    postfix.stringToArr();
     postfix.calculation();
   };
   return (
