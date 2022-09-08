@@ -6,6 +6,9 @@ class PostfixCalculate {
   }
 
   stringToArr(infixString) {
+    //오류가 많음
+    //1. (3+4)x(4+3) 에서 괄호 연속이 안됨.
+    //2. 괄호가 있기에 코드를 좀 더 추상화해야 함.
     const arr = [];
     let num = "";
     let idx = 0;
@@ -14,20 +17,23 @@ class PostfixCalculate {
         infixString[idx] === "+" ||
         infixString[idx] === "-" ||
         infixString[idx] === "x" ||
-        infixString[idx] === "/"
+        infixString[idx] === "/" ||
+        infixString[idx] === "(" ||
+        infixString[idx] === ")"
       ) {
-        arr.push(num);
+        num && arr.push(num);
         arr.push(infixString[idx]);
         idx++;
         num = "";
-        continue;
       } else {
         num += infixString[idx];
         idx++;
       }
     }
-    arr.push(num);
+
+    num && arr.push(num);
     num = "";
+    console.log(arr);
     return arr;
   }
 
@@ -35,11 +41,21 @@ class PostfixCalculate {
     const infixArr = this.stringToArr(this.infix);
     const stack = new Stack();
     const postfix = [];
-
     //input을 잘 나눠서 배열로 넣는 다른 방법이 필요함.
     infixArr.forEach((element) => {
-      //높은 우선순위 연산자인 경우
-      if (element === "/" || element === "x") {
+      console.log(`element ${element}`);
+      if (element === "(") {
+        stack.push(element);
+      } else if (element === ")") {
+        while (stack.getLength() !== 0 && stack.peek() !== "(") {
+          console.log(`peek ${stack.peek()}`);
+          console.log(`stack length ${stack.getLength()}`);
+          postfix.push(stack.pop());
+          console.log(`postfix ${postfix}`);
+        }
+        stack.pop();
+      } else if (element === "/" || element === "x") {
+        //높은 우선순위 연산자인 경우
         //스택이 비어있을 경우
         if (stack.getLength() === 0) {
           stack.push(element);
@@ -47,7 +63,7 @@ class PostfixCalculate {
         } else {
           let peek = stack.peek();
           //현재보다 높은 우선순위 연산자인 경우
-          while (peek === "/" || peek === "x") {
+          while ((stack.peek() !== "(" && peek === "/") || peek === "x") {
             postfix.push(stack.pop());
             peek = stack.peek();
           }
@@ -60,7 +76,7 @@ class PostfixCalculate {
           stack.push(element);
         } else {
           //현재보다 높은 우선순위 연산자인 경우
-          while (stack.getLength() !== 0) {
+          while (stack.getLength() !== 0 && stack.peek() !== "(") {
             postfix.push(stack.pop());
           }
           stack.push(element);
@@ -75,6 +91,7 @@ class PostfixCalculate {
     while (stack.getLength() !== 0) {
       postfix.push(stack.pop());
     }
+    console.log(postfix);
     return postfix;
   }
 

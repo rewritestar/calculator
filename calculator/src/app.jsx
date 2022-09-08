@@ -6,6 +6,7 @@ import PostfixCalculate from "./component/service/postfixCalculate";
 function App() {
   const [input, setInput] = useState("");
   let reset = useRef(false);
+
   const onNumberClick = (e) => {
     if (reset.current) {
       const newInput = e.target.innerText;
@@ -36,35 +37,25 @@ function App() {
 
     const prev = input.slice(-1);
     //연산자가 중첩되지 않도록 만듦
-    if (
-      prev === "/" ||
-      prev === "x" ||
-      prev === "-" ||
-      prev === "+" ||
-      prev === "%"
-    ) {
+    if (prev === "/" || prev === "x" || prev === "-" || prev === "+") {
       return;
     }
     const newInput = input + operator;
     setInput(newInput);
   };
+
   const onEqualClick = (e) => {
     if (reset.current) {
       return;
     }
     const prev = input.slice(-1);
-    if (
-      prev === "/" ||
-      prev === "x" ||
-      prev === "-" ||
-      prev === "+" ||
-      prev === "%"
-    ) {
+    if (prev === "/" || prev === "x" || prev === "-" || prev === "+") {
       alert("완성되지 않은 수식입니다.");
       return;
     }
     const postfixCalculate = new PostfixCalculate(input);
-    setInput(postfixCalculate.calculation());
+    const result = postfixCalculate.calculation();
+    setInput(result);
     reset.current = true;
   };
   return (
@@ -97,9 +88,9 @@ function App() {
             <Button name="+" colorType="operator" onClick={onOperatorClick} />
           </div>
           <div className={styles.buttons_container}>
-            <Button name="(" colorType="operator" onClick={onOperatorClick} />
+            <Button name="(" colorType="operator" onClick={onNumberClick} />
             <Button name="0" colorType="number" onClick={onNumberClick} />
-            <Button name=")" colorType="operator" onClick={onOperatorClick} />
+            <Button name=")" colorType="operator" onClick={onNumberClick} />
             <Button name="=" colorType="operator" onClick={onEqualClick} />
           </div>
         </section>
