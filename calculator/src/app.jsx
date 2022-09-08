@@ -49,6 +49,9 @@ function App() {
     setInput(newInput);
   };
   const onEqualClick = (e) => {
+    if (reset.current) {
+      return;
+    }
     const prev = input.slice(-1);
     if (
       prev === "/" ||
@@ -72,7 +75,7 @@ function App() {
           <div className={styles.buttons_container}>
             <Button name="C" colorType="operator" onClick={onResetClick} />
             <Button name="<=" colorType="operator" onClick={onDeleteClick} />
-            <Button name="ㅑ" colorType="operator" />
+            <Button name="🦄" colorType="operator" />
             <Button name="/" colorType="operator" onClick={onOperatorClick} />
           </div>
           <div className={styles.buttons_container}>

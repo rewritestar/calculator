@@ -30,6 +30,7 @@ class PostfixCalculate {
     num = "";
     return arr;
   }
+
   infixToPostfix() {
     const infixArr = this.stringToArr(this.infix);
     const stack = new Stack();
@@ -74,7 +75,6 @@ class PostfixCalculate {
     while (stack.getLength() !== 0) {
       postfix.push(stack.pop());
     }
-
     return postfix;
   }
 
@@ -103,6 +103,8 @@ class PostfixCalculate {
           case "/":
             stack.push(firstNum / secondNum);
             break;
+          default:
+            console.log("switch default 출력되면 안될텐데..");
         }
       } else {
         stack.push(element);
