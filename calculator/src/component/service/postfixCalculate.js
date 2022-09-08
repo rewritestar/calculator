@@ -33,7 +33,6 @@ class PostfixCalculate {
 
     num && arr.push(num);
     num = "";
-    console.log(arr);
     return arr;
   }
 
@@ -43,15 +42,11 @@ class PostfixCalculate {
     const postfix = [];
     //input을 잘 나눠서 배열로 넣는 다른 방법이 필요함.
     infixArr.forEach((element) => {
-      console.log(`element ${element}`);
       if (element === "(") {
         stack.push(element);
       } else if (element === ")") {
         while (stack.getLength() !== 0 && stack.peek() !== "(") {
-          console.log(`peek ${stack.peek()}`);
-          console.log(`stack length ${stack.getLength()}`);
           postfix.push(stack.pop());
-          console.log(`postfix ${postfix}`);
         }
         stack.pop();
       } else if (element === "/" || element === "x") {
@@ -71,17 +66,10 @@ class PostfixCalculate {
         }
         //낮은 우선순위 연산자인 경우
       } else if (element === "-" || element === "+") {
-        //스택이 비어있을 경우
-        if (stack.getLength() === 0) {
-          stack.push(element);
-        } else {
-          //현재보다 높은 우선순위 연산자인 경우
-          while (stack.getLength() !== 0 && stack.peek() !== "(") {
-            postfix.push(stack.pop());
-          }
-          stack.push(element);
+        while (stack.getLength() && stack.peek() !== "(") {
+          postfix.push(stack.pop());
         }
-        //문자열인 경우
+        stack.push(element);
       } else {
         postfix.push(element);
       }
@@ -91,7 +79,6 @@ class PostfixCalculate {
     while (stack.getLength() !== 0) {
       postfix.push(stack.pop());
     }
-    console.log(postfix);
     return postfix;
   }
 
